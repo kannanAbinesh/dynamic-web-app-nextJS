@@ -1,9 +1,58 @@
-import React from 'react';
+"use client";
+
+import Link from 'next/link';
+import React, { useState } from 'react';
 import './aboutUs.css';
 
 const AboutUs = () => {
+    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+    // Random motivational/business YouTube video IDs
+    const youtubeVideoIds = [
+        'ZXsQAXx_ao0', // Motivational video
+        '1T14eOUf-28', // Business strategy
+        'arj7oStGLkU', // Entrepreneurship
+        'ji5_MqicxSo', // Success mindset
+        'Lp7E973zozc', // Leadership
+    ];
+
+    // Select a random video
+    const randomVideoId = youtubeVideoIds[Math.floor(Math.random() * youtubeVideoIds.length)];
+
+    const handleVideoClick = () => {
+        setIsVideoPlaying(true);
+    };
+
+    const handleCloseVideo = () => {
+        setIsVideoPlaying(false);
+    };
+
     return (
         <div className="about-page">
+            {/* Video Modal */}
+            {isVideoPlaying && (
+                <div className="video-modal-overlay" onClick={handleCloseVideo}>
+                    <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="video-close-button" onClick={handleCloseVideo}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
+                        <div className="video-wrapper">
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src={`https://www.youtube.com/embed/${randomVideoId}?autoplay=1`}
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Hero Section - Image 1 */}
             <section className="hero-section">
                 <div className="hero-container">
@@ -13,10 +62,10 @@ const AboutUs = () => {
                         <h1 className="hero-text-line">vision and challenges!</h1>
                         <div className="arrow-button-wrapper">
                             <svg className="curved-arrow" viewBox="0 0 100 100" width="120" height="120">
-                                <path d="M 10 80 Q 10 20, 60 20" stroke="#333" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
+                                <path d="M 10 80 Q 10 20, 60 20" stroke="currentColor" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)" />
                                 <defs>
                                     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-                                        <polygon points="0 0, 10 3, 0 6" fill="#333" />
+                                        <polygon points="0 0, 10 3, 0 6" fill="currentColor" />
                                     </marker>
                                 </defs>
                             </svg>
@@ -25,7 +74,7 @@ const AboutUs = () => {
                     </div>
                     <div className="hero-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&h=800&fit=crop" alt="Professional Woman" className="hero-main-image" />
-                        <div className="video-popup">
+                        <div className="video-popup" onClick={handleVideoClick}>
                             <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop" alt="Video Thumbnail" className="video-thumbnail" />
                             <div className="play-button">
                                 <svg viewBox="0 0 24 24" fill="white" width="30" height="30">
@@ -85,7 +134,7 @@ const AboutUs = () => {
                             <p className="service-description">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.
                             </p>
-                            <a href="#" className="service-link">Learn More</a>
+                            <Link href="#" className="service-link">Learn More</Link>
                         </div>
 
                         <div className="service-card">
@@ -96,7 +145,7 @@ const AboutUs = () => {
                             <p className="service-description">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.
                             </p>
-                            <a href="#" className="service-link">Learn More</a>
+                            <Link href="#" className="service-link">Learn More</Link>
                         </div>
 
                         <div className="service-card">
@@ -107,7 +156,7 @@ const AboutUs = () => {
                             <p className="service-description">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.
                             </p>
-                            <a href="#" className="service-link">Learn More</a>
+                            <Link href="#" className="service-link">Learn More</Link>
                         </div>
 
                         <div className="service-card">
@@ -118,7 +167,7 @@ const AboutUs = () => {
                             <p className="service-description">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.
                             </p>
-                            <a href="#" className="service-link">Learn More</a>
+                            <Link href="#" className="service-link">Learn More</Link>
                         </div>
                     </div>
                 </div>
@@ -154,7 +203,7 @@ const AboutUs = () => {
                                 <p className="blog-card-description">
                                     Lorem Ipsum dolor sit amet consectetur. Purus egestas a scelerisque turpis. Nullam imperdiet sodales et turpis magna commodo tincidunt tristique. Tempus euismod aget donec in.
                                 </p>
-                                <a href="#" className="blog-link">Learn More</a>
+                                <Link href="#" className="blog-link">Learn More</Link>
                             </div>
 
                             <div className="blog-card">
@@ -165,7 +214,7 @@ const AboutUs = () => {
                                 <p className="blog-card-description">
                                     Lorem Ipsum dolor sit amet consectetur. Purus egestas a scelerisque turpis. Nullam imperdiet sodales et turpis magna commodo tincidunt tristique. Tempus euismod aget donec in.
                                 </p>
-                                <a href="#" className="blog-link">Learn More</a>
+                                <Link href="#" className="blog-link">Learn More</Link>
                             </div>
 
                             <div className="blog-card">
@@ -176,7 +225,7 @@ const AboutUs = () => {
                                 <p className="blog-card-description">
                                     You want something deeper, wiser, more aligned, and truly sustainable to support you as you spread your wings + soar to greater heights in your.
                                 </p>
-                                <a href="#" className="blog-link">Learn More</a>
+                                <Link href="#" className="blog-link">Learn More</Link>
                             </div>
                         </div>
                     </div>

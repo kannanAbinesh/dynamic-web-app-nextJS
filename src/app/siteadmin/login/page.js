@@ -1,7 +1,8 @@
-import Login from "@/Components/AdminLogin/AdminLogin";
+// import Login from "@/components/AdminLogin/AdminLogin";
 
 export default function AdminLogin() {
     return(
-        <Login />        
+        <></>
+        // <Login />        
     )
 }
