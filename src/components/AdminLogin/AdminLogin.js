@@ -14,21 +14,6 @@ const Login = () => {
         console.log('Login submitted', { email, password, rememberMe });
     };
 
-    const handleGoogleSignIn = () => {
-        // Handle Google sign in
-        console.log('Google sign in');
-    };
-
-    const handleAppleSignIn = () => {
-        // Handle Apple sign in
-        console.log('Apple sign in');
-    };
-
-    const handleXSignIn = () => {
-        // Handle X (Twitter) sign in
-        console.log('X sign in');
-    };
-
     return (
         <div className="login-page">
             {/* Left Side - Login Form */}
@@ -36,7 +21,7 @@ const Login = () => {
                 <div className="login-form-container">
                     <div className="login-header">
                         <h1 className="login-title">Welcome</h1>
-                        <p className="login-subtitle">Log in to use our platform</p>
+                        <p className="login-subtitle">Enter your email and password to sign in</p>
                     </div>
 
 
